@@ -1,0 +1,72 @@
+/* Body background gradient */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #00008B, #87CEEB); /* Gradient from dark blue to sky blue */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Main container styling */
+.main {
+    background-color: #fff;
+    border: thin solid #999999;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 400px;
+}
+
+.main h2 {
+    color: #FF6600;
+    margin-bottom: 20px;
+}
+
+/* Input and Select Styles */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: linear-gradient(to right, #FF4500, #FFA500); /* Gradient from red to orange */
+    color: white; /* Text color for contrast */
+}
+
+input[type="radio"] {
+    margin-bottom: 15px;
+    padding: 10px;
+}
+
+/* Submit Button Styles */
+button {
+    width: 100%; /* Make button the same width as input fields */
+    background: linear-gradient(to right, #FF4500, #FFA500); /* Gradient from red to orange */
+    color: white; /* Button text color */
+    border: none; /* Remove default border */
+    padding: 10px; /* Padding for the button */
+    text-align: center; /* Center text */
+    text-decoration: none; /* Remove text underline */
+    display: inline-block; /* Display as inline-block */
+    font-size: 16px; /* Font size */
+    margin-bottom: 15px; /* Margin to match input fields */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    border-radius: 5px; /* Rounded corners */
+    transition: background 0.3s ease; /* Smooth transition for background */
+}
+
+button:hover {
+    background: linear-gradient(to right, #e63900, #e69500); /* Darker gradient on hover */
+}
+
+button:focus {
+    outline: none; /* Remove default focus outline */
+    background: linear-gradient(to right, #cc3300, #cc8500); /* Even darker gradient on focus */
+}

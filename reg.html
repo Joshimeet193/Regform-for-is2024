@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+
+<!-- Registration Form -->
+<div id="registrationForm" class="page">
+    <div class="main">
+        <h2>Registration Form</h2>
+        <form name="frm" action="javascript:void(0);" onsubmit="return false;">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required/>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required/>
+            
+            <label for="mobile">Contact:</label>
+            <input type="text" id="mobile" name="mobile" maxlength="10" required/>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required/>
+            
+            <label for="repassword">Re-type Password:</label>
+            <input type="password" id="repassword" name="repassword" required/>
+            
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option disabled selected value="">- Select gender -</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+            
+            <label for="edu">Education:</label>
+            <select id="edu" name="edu" required>
+                <option disabled selected value="">- Select education -</option>
+                <option value="SSC or less">SSC or less</option>
+                <option value="HSC">HSC</option>
+                <option value="Graduation">Graduation</option>
+                <option value="Post Graduation">Post Graduation</option>
+                <option value="Other">Other</option>
+            </select>
+            
+            <button onclick="validateRegistration()">Submit</button>
+        </form>
+    </div>
+</div>
+
+<!-- Confirm Details Page -->
+<div id="confirmDetails" class="page" style="display: none;">
+    <div class="main">
+        <h2>Confirm Details</h2>
+        <p>Please confirm your details:</p>
+        <div>
+            <strong>Full Name:</strong> <span id="confirm_name"></span><br>
+            <strong>Email:</strong> <span id="confirm_email"></span><br>
+            <strong>Contact:</strong> <span id="confirm_mobile"></span><br>
+            <strong>Gender:</strong> <span id="confirm_gender"></span><br>
+            <strong>Education:</strong> <span id="confirm_edu"></span><br>
+        </div>
+        <br>
+        <button onclick="confirmRegistration()">Confirm</button>
+    </div>
+</div>
+
+<!-- Success Page -->
+<div id="successPage" class="page" style="display: none;">
+    <div class="main">
+        <h2>Registration Successful</h2>
+        <p>Thank you for registering!</p>
+    </div>
+</div>
+
+<!-- JavaScript -->
+<script src="include/validation.js"></script>
+<script>
+    function validateRegistration() {
+        var name = document.getElementById("name").value;
+        var email = document.getElementById("email").value;
+        var mobile = document.getElementById("mobile").value;
+        var password = document.getElementById("password").value;
+        var repassword = document.getElementById("repassword").value;
+        var gender = document.getElementById("gender").value;
+        var edu = document.getElementById("edu");
+
+        if (name.trim() == "") {
+            alert("Enter full name please");
+            document.getElementById("name").focus();
+            return false;
+        }
+        if (!checkEmail(email)) {
+            alert("Enter Valid E-mail Address");
+            document.getElementById("email").focus();
+            return false;
+        }
+        if (mobile.trim() == "") {
+            alert("Enter Your Contact Number");
+            document.getElementById("mobile").focus();
+            return false;
+        }
+        if (password.trim() == "") {
+            alert("Input Password");
+            document.getElementById("password").focus();
+            return false;
+        }
+        if (password.length < 6) {
+            alert("Minimum input 6 characters for password");
+            document.getElementById("password").focus();
+            return false;
+        }
+        if (repassword.trim() == "") {
+            alert("Input Confirm Password");
+            document.getElementById("repassword").focus();
+            return false;
+        }
+        if (repassword !== password) {
+            alert("Passwords do not match");
+            document.getElementById("repassword").focus();
+            return false;
+        }
+        if (gender === "") {
+            alert("Select proper gender");
+            return false;
+        }
+        if (edu.selectedIndex == 0) {
+            alert("Select proper education option");
+            edu.focus();
+            return false;
+        }
+
+        // Populate confirm details page
+        document.getElementById("confirm_name").textContent = name;
+        document.getElementById("confirm_email").textContent = email;
+        document.getElementById("confirm_mobile").textContent = mobile;
+        document.getElementById("confirm_gender").textContent = gender;
+        document.getElementById("confirm_edu").textContent = edu.options[edu.selectedIndex].text;
+
+        // Show confirm details page, hide registration form
+        document.getElementById("registrationForm").style.display = "none";
+        document.getElementById("confirmDetails").style.display = "block";
+    }
+
+    function confirmRegistration() {
+        // Perform any additional processing here, if needed
+
+        // Show success page, hide confirm details page
+        document.getElementById("confirmDetails").style.display = "none";
+        document.getElementById("successPage").style.display = "block";
+    }
+
+    function checkEmail(email) {
+        return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+    }
+</script>
+
+</body>
+</html>
